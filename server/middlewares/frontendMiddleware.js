@@ -3,8 +3,8 @@ const express = require('express');
 const path = require('path');
 const compression = require('compression');
 const pkg = require(path.resolve(process.cwd(), 'package.json'));
-const superagent =require('superagent');
-const cookie = require('react-cookies')
+const superagent = require('superagent');
+const cookie = require('react-cookies');
 const PROXY_TO_API = 'proxy_to_api/';
 const API_HOST = 'https://api.github.com';
 
@@ -38,27 +38,27 @@ const addDevMiddlewares = (app, webpackConfig) => {
   app.get('*', (req, res) => {
 		if (req.url.indexOf(PROXY_TO_API) > 0) {
 			const redirectUrl = API_HOST + req.url.replace(PROXY_TO_API, '');
-			console.info("redirect to url:" + redirectUrl)
+			console.info(`redirect to url: ${redirectUrl}`);
 			process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 			superagent.get(redirectUrl)
 				.set('Accept', 'application/json')
 				.set('Cookie', req.headers.cookies ? req.headers.cookies : '')
-				.end(function (error, data) {
+				.end((error, data) => {
 					res.setHeader('Content-Type', 'application/json');
 					data.headers && data.headers['set-cookie'] && res.setHeader('set-cookie', data.headers['set-cookie']);
 					res.status(200);
 					try {
-						let info = JSON.parse(data.text);
+						const info = JSON.parse(data.text);
 						info.session_id = JSON.stringify(data.headers['set-cookie']);
 						res.write(JSON.stringify(info));
 						res.end();
 					} catch (err) {
-						console.info(err)
+						console.info(err);
 					}
 				});
 		} else {
 			try {
-				let unplug = cookie.plugToRequest(req, res);
+				const unplug = cookie.plugToRequest(req, res);
 				fs.readFile(path.join(compiler.outputPath, 'index.html'), (err, file) => {
 					if (err) {
 						res.sendStatus(404);
@@ -76,32 +76,31 @@ const addDevMiddlewares = (app, webpackConfig) => {
 		// 转发请求到leancloud服务器
 		if (req.url.indexOf(PROXY_TO_API) > 0) {
 			const redirectUrl = API_HOST + req.url.replace(PROXY_TO_API, '');
-			console.info("redirect to url:" + redirectUrl);
+			console.info(`redirect to url: ${redirectUrl}`);
 			process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 			superagent.post(redirectUrl)
 				.send(req.body)
 				.set('Accept', 'application/json')
 				.set('Cookie', req.headers.cookies ? req.headers.cookies : '')
-				.end(function (error, data) {
+				.end((error, data) => {
 					res.setHeader('Content-Type', 'application/json');
 					data.headers && data.headers['set-cookie'] && res.setHeader('set-cookie', data.headers['set-cookie']);
 					res.status(200);
 					try {
-						let info = JSON.parse(data.text);
+						const info = JSON.parse(data.text);
 						info.session_id = JSON.stringify(data.headers['set-cookie']);
 						res.write(JSON.stringify(info));
 						res.end();
 					} catch (err) {
-						next(err);
+						console.info(err);
 					}
 				});
-		}else {
+		} else {
 			res.status(200);
-			res.write("not supported");
+			res.write('not supported');
 			res.end();
 		}
 	});
-
 };
 
 // Production middlewares

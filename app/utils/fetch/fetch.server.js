@@ -9,7 +9,9 @@
 
 import Promise from 'bluebird';
 import fetch, { Request, Headers, Response } from 'node-fetch';
-import { host } from '../../config';
+
+const argv = require('minimist')(process.argv.slice(2));
+const host = argv.host || process.env.HOST;
 
 fetch.Promise = Promise;
 Response.Promise = Promise;

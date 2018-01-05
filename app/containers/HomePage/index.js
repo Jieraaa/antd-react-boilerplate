@@ -11,25 +11,23 @@
 
 import React from 'react';
 import Api from './../../utils/Api';
-import format from './../../utils/format'
 
 export default class HomePage extends React.PureComponent {
-  handleClick(){
-    let username='merrier';
-    let path = Api.path.getUserRepo.format(username);
-		let url = Api.assembleUrl(Api.host.main, path, {type:'all',sort:'updated'});
-		console.info(url)
-		Api.request(url, (data) => {
-      console.info(data)
-		})
-  }
+	handleClick() {
+		const username = 'merrier';
+		const path = Api.assembleUrl(Api.path.getUserRepo, username);
+		console.info(path);
+		// const url = Api.assembleUrl(Api.host.main, path, { type: 'all', sort: 'updated' });
+		// Api.request(url, (data) => {
+		// });
+	}
 
-  render() {
-    return (
-      <h1>
-        <input type="button" onClick={()=>this.handleClick()} value="点我吧"/>
-      </h1>
-    );
-  }
+	render() {
+		return (
+  <h1>
+    <input type="button" onClick={() => this.handleClick()} value="点我吧" />
+  </h1>
+		);
+	}
 
 }

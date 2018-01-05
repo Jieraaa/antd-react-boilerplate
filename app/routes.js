@@ -34,7 +34,7 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
-    },{
+    }, {
 			path: '/login',
 			name: 'login',
 			getComponent(nextState, cb) {
@@ -50,7 +50,7 @@ export default function createRoutes(store) {
 
 				importModules.catch(errorLoading);
 			},
-		},{
+		}, {
 			path: '/page1',
 			name: 'home',
 			getComponent(nextState, cb) {

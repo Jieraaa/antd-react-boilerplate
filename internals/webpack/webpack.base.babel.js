@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 /**
  * COMMON WEBPACK CONFIGURATION
  */
@@ -87,10 +88,10 @@ module.exports = (options) => ({
       options: {
         postcss: [
           require('autoprefixer')({ browsers: ['last 5 versions'] }),
-					require('postcss-url')()
-				]
-      }
-    })
+					require('postcss-url')(),
+				],
+      },
+    }),
   ]),
   resolve: {
     modules: ['app', 'node_modules'],
