@@ -23,9 +23,6 @@ export default class HomePage extends React.PureComponent {
 		Api.request(url, (res) => {
 			console.info(res);
 		});
-		Api.request(url, (res) => {
-			console.info(res);
-		});
 	}
 
 	render() {
