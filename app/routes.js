@@ -3,6 +3,7 @@
 // See http://blog.mxstbr.com/2016/01/react-apps-with-pages for more information
 // about the code splitting business
 import { getAsyncInjectors } from 'utils/asyncInjectors';
+import cookie from 'react-cookies';
 
 const errorLoading = (err) => {
   console.error('Dynamic page loading failed', err); // eslint-disable-line no-console
@@ -11,6 +12,9 @@ const errorLoading = (err) => {
 const loadModule = (cb) => (componentModule) => {
   cb(null, componentModule.default);
 };
+
+const getLoginState = () => cookie.load('id');
+
 // getComponent对应于以前的 component 属性，但是这个方法是异步的，也就是当路由匹配时，才会调用这个方法。
 
 export default function createRoutes(store) {
@@ -34,6 +38,9 @@ export default function createRoutes(store) {
 
         importModules.catch(errorLoading);
       },
+			onEnter(nextState, replace) {
+				!getLoginState() && replace('/login');
+			},
     }, {
 			path: '/login',
 			name: 'login',
@@ -65,6 +72,9 @@ export default function createRoutes(store) {
 				});
 
 				importModules.catch(errorLoading);
+			},
+			onEnter(nextState, replace) {
+				!getLoginState() && replace('/login');
 			},
 		}, {
       path: '*',

@@ -4,9 +4,20 @@
 
 import React from 'react';
 import cookie from 'react-cookies';
+import {browserHistory} from 'react-router';
 import './login.css';
+import Const from './../../utils/Const';
 
 export default class Login extends React.PureComponent {
+
+	componentWillMount() {
+		// const id = cookie.load('id');
+		// if (!id) {
+		// 	// 未登录
+		// 	browserHistory.push(Const.route.LOGIN);
+		// 	// location.href = Const.route.LOGIN;
+		// }
+	}
 
 	handleLogin() {
 		const opt = {
@@ -15,7 +26,7 @@ export default class Login extends React.PureComponent {
 		// let username = this.refs["username"].value;
 		// let password = this.refs["password"].value;
 		cookie.save('id', 1, opt);
-		location.href = './';
+		browserHistory.push(Const.route.HOME);
 	}
 
 	render() {
