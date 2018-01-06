@@ -28,7 +28,7 @@ export default class HomePage extends React.PureComponent {
 	render() {
 		return (
 			<Layout>
-				<input type="button" onClick={() => this.handleClick()} value="点我吧" />
+				<input type="button" onClick={() => this.handleClick()} value="点我可以发请求" />
 			</Layout>
 		);
 	}
