@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-syntax */
 import fetch from './fetch';
 
 const PROXY_TO_API = 'proxy_to_api/';
@@ -13,11 +14,11 @@ const Api = {
 	},
 
 	/**
-	 * 拼接一个可以访问的url
+	 * 拼接path
 	 * @param path eg. /login
 	 * @param params eg. username,...
 	 */
-	assembleUrl(path, ...params) {
+	assemblePath(path, ...params) {
 		let newPath = path;
 		const len = params.length;
 		for (let i = 0; i < len; i++)	{
@@ -25,19 +26,41 @@ const Api = {
 		}
 		return newPath;
 	},
-	/*
-	* 拼接文件上传的url
-	* @param path eg. /uploadFile
-	* */
-	assembleFileUrl(path) {
-		return this.host.apiMain + path;
+	/**
+	 * 拼接一个可以访问的url
+	 * @param host eg. http://kcsj.leanapp.cn
+	 * @param path eg. /login
+	 * @param queryObject eg. {name: 'xunaixuan', phone: '18610351888'}
+	 */
+	assembleUrl(host, path, queryObject) {
+		return host + path + this.assembleQueryParams(queryObject);
 	},
 
-	request(url, data, successCallback, errorCallback) {
+	/**
+	 * 将一个object转为一个query类型的string
+	 * @param object
+	 * @returns {string}
+	 */
+	assembleQueryParams(object) {
+		let query = '';
+		let index = 0;
+		for (const key in object) {
+			if (index === 0) {
+				query += `?${key}=${object[key]}`;
+			} else {
+				query += `&${key}=${object[key]}`;
+			}
+			index++;
+		}
+		return query;
+	},
+	request(url, successCallback, errorCallback) {
 		fetch(url,
 			{
-				// headers: {"Cookies": 'test'},
-				body: JSON.stringify(data),
+				headers: {
+					'Content-Type': 'application/json',
+					// 'Cookies': 'test'
+				},
 			}
 		)
 			.then(response => response.json())

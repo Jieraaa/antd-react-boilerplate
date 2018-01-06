@@ -17,11 +17,15 @@ export default class HomePage extends React.PureComponent {
 
 	handleClick() {
 		const username = 'merrier';
-		const path = Api.assembleUrl(Api.path.getUserRepo, username);
-		console.info(path);
-		// const url = Api.assembleUrl(Api.host.main, path, { type: 'all', sort: 'updated' });
-		// Api.request(url, (data) => {
-		// });
+		const path = Api.assemblePath(Api.path.getUserRepo, username);
+		const data = { type: 'all', sort: 'updated' };
+		const url = Api.assembleUrl(Api.host.main, path, data);
+		Api.request(url, (res) => {
+			console.info(res);
+		});
+		Api.request(url, (res) => {
+			console.info(res);
+		});
 	}
 
 	render() {
