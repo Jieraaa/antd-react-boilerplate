@@ -9,16 +9,6 @@ import './login.css';
 import Const from './../../utils/Const';
 
 export default class Login extends React.PureComponent {
-
-	componentWillMount() {
-		// const id = cookie.load('id');
-		// if (!id) {
-		// 	// 未登录
-		// 	browserHistory.push(Const.route.LOGIN);
-		// 	// location.href = Const.route.LOGIN;
-		// }
-	}
-
 	handleLogin() {
 		const opt = {
 			path: '/',

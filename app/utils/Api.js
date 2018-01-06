@@ -9,7 +9,6 @@ const Api = {
 	},
 
 	path: {
-		// 登录接口 username:用户名 password:密码
 		getUserRepo: 'users/{0}/repos',
 	},
 
