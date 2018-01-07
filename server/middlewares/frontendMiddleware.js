@@ -6,7 +6,7 @@ const pkg = require(path.resolve(process.cwd(), 'package.json'));
 const superagent = require('superagent');
 const cookie = require('react-cookies');
 const PROXY_TO_API = 'proxy_to_api/';
-const API_HOST = 'https://api.github.com';
+const API_HOST = process.env.API_HOST;
 
 // Dev middleware
 const addDevMiddlewares = (app, webpackConfig) => {
