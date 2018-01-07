@@ -2,6 +2,7 @@ import React from 'react';
 import {browserHistory} from 'react-router';
 import {Layout, Menu, Icon} from 'antd';
 import Const from './../../utils/Const';
+import './Layout.css';
 const {Header, Footer, Sider, Content} = Layout;
 const SubMenu = Menu.SubMenu;
 const MenuItem = Menu.Item;
@@ -33,7 +34,7 @@ export default class LayoutBox extends React.PureComponent { // eslint-disable-l
 							boxShadow: '2px 0 6px rgba(0, 21, 41, .35)',
 						}}
 					>
-						<div className="logo" onClick={() => { browserHistory.push(Const.route.LOGIN); }}>青聪岁悦</div>
+						<div className="layout-logo" onClick={() => { browserHistory.push(Const.route.LOGIN); }}>青聪岁悦</div>
 						<Menu
 							className="layout_menu"
 							defaultSelectedKeys={['1']}

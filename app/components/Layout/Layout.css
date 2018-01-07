@@ -1,4 +1,4 @@
-.logo{
+.layout-logo{
   height: 64px;
   position: relative;
   line-height: 64px;
@@ -26,9 +26,4 @@
 
 .ant-menu-dark .ant-menu-inline.ant-menu-sub{
   background: #000b15!important;
-}
-
-.link{
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.67);
 }
