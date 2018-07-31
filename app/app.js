@@ -41,7 +41,6 @@ openSansObserver.load().then(() => {
 // Create redux store with history
 const initialState = {};
 const history = createHistory();
-console.info(history)
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
