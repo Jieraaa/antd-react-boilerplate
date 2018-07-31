@@ -22,7 +22,4 @@ CODE_OF_CONDUCT.md
 CONTRIBUTING.md
 Changelog.md
 LICENSE.md
-README.md
-app/.htaccess
-app/.nginx.conf
 appveyor.yml
