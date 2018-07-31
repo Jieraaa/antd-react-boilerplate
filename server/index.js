@@ -1,6 +1,7 @@
 /* eslint consistent-return:0 */
 
 const express = require('express');
+const proxy = require('http-proxy-middleware');
 const logger = require('./logger');
 
 const argv = require('./argv');
@@ -14,8 +15,7 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+app.use('/api', proxy({ target: 'http://localhost:4000', changeOrigin: true }));
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
