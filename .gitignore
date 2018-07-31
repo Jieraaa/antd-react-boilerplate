@@ -1,0 +1,28 @@
+# Don't check auto-generated stuff into git
+coverage
+build
+node_modules
+stats.json
+
+# Cruft
+.DS_Store
+npm-debug.log
+.idea
+yarn.lock
+package-lock.json
+.editorconfig
+.eslintrc.js
+.gitattributes
+.nvmrc
+.prettierignore
+.prettierrc
+.stylelintrc
+.travis.yml
+CODE_OF_CONDUCT.md
+CONTRIBUTING.md
+Changelog.md
+LICENSE.md
+README.md
+app/.htaccess
+app/.nginx.conf
+appveyor.yml
